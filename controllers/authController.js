@@ -36,6 +36,7 @@ exports.register = async function(req, res, next) {
     const lastName = req.body.lastName ? req.body.lastName.trim() : undefined;
     const password = req.body.password ? req.body.password.trim() : undefined;
     const phone = req.body.phone ? req.body.phone.trim() : undefined;
+    const image = req.body.image ? req.body.image.trim() : undefined;
   
     // check for errors
     if (!email) errors.push({msg: 'You must enter an email address.'});
@@ -43,6 +44,7 @@ exports.register = async function(req, res, next) {
     if (!password) errors.push({msg: 'You must enter a password.'});
     if (password.length < 6) errors.push({msg: 'Password must be at least 6 characters'});
     if (!phone) errors.push({msg: 'You must enter a phone number'});
+    if (!image) errors.push({msg: 'You must send an image'});
     
     if (errors.length > 0) {
       return res.status(422).json(errors);
@@ -62,7 +64,8 @@ exports.register = async function(req, res, next) {
         profile: {firstName, lastName, maidenName},
         verified: false,
         phone,
-        verificationCode
+        verificationCode,
+        image
       });
   
       await newUser.save();

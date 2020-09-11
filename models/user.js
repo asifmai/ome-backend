@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema({
   verificationCode : Number,
   password: String,
   salt: String,
+  image: String,
   profile: {
     firstName: String,
     lastName: String,
