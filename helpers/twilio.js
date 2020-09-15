@@ -1,9 +1,10 @@
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
-module.exports.sendSMS = (number, body) => {
+module.exports.sendPhoneVerificationSMS = (number, verificationCode) => {
+  const smsBody = `OME\nYour verification code is: ${verificationCode}`;
   client.messages
     .create({
-        body: body,
+        body: smsBody,
         from: process.env.TWILIO_FROM_NUMBER,
         to: number
       })

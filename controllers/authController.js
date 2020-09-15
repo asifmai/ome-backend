@@ -1,5 +1,6 @@
 'use strict';
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const User = require('../models/user');
 const config = require('../config/main');
 const {genVerificationCode} = require('../helpers/random');
@@ -11,12 +12,15 @@ function generateTokenResponse(user) {
   const userInfo = {
     _id: user._id,
     firstName: user.profile.firstName,
+    middleName: user.profile.middleName,
     lastName: user.profile.lastName,
-    email: user.email
+    email: user.email,
+    image: user.image,
+    phone: user.phone,
   };
 
   return {
-    token: 'Bearer ' + jwt.sign(userInfo, config.secret, { expiresIn: 10080}),
+    token: 'Bearer ' + jwt.sign(userInfo, config.secret, { expiresIn: 120000}),
     user: userInfo
   };
 }
@@ -26,90 +30,131 @@ exports.login = function(req, res, next) {
   return res.status(200).json(generateTokenResponse(req.user));
 }
 
-// registration route
-exports.register = async function(req, res, next) {
+// Register Phone Number
+exports.register_phone = async function(req, res, next) {
   try {
     const errors = [];
-    const email = req.body.email ? req.body.email.trim() : undefined;
-    const firstName = req.body.firstName ? req.body.firstName.trim() : undefined;
-    const maidenName = req.body.maidenName ? req.body.maidenName.trim() : '';
-    const lastName = req.body.lastName ? req.body.lastName.trim() : undefined;
-    const password = req.body.password ? req.body.password.trim() : undefined;
     const phone = req.body.phone ? req.body.phone.trim() : undefined;
-    const image = req.body.image ? req.body.image.trim() : undefined;
-  
-    // check for errors
-    if (!email) errors.push({msg: 'You must enter an email address.'});
-    if (!firstName || !lastName) errors.push({msg: 'You must enter your full name.'});
-    if (!password) errors.push({msg: 'You must enter a password.'});
-    if (password.length < 6) errors.push({msg: 'Password must be at least 6 characters'});
     if (!phone) errors.push({msg: 'You must enter a phone number'});
-    if (!image) errors.push({msg: 'You must send an image'});
-    
-    if (errors.length > 0) {
-      return res.status(422).json(errors);
-    } else {
-      let foundUser = await User.findOne({email});
-      if (foundUser)
-        return res.status(422).send({ error: 'That email address is already in use.' });
 
-      foundUser = await User.findOne({phone});
-      if (foundUser)
-        return res.status(422).send({ error: 'That phone number is already in use.' });
-  
+    if (errors.length > 0) {
+      return res.status(422).json({status: 'error', errors});
+    } else {
+      const foundUser = await User.findOne({phone});
+      if (foundUser) return res.status(422).json({ status: 'error', errors: [{msg: 'That phone number is already in use.'}] });
+
       const verificationCode = genVerificationCode();
       let newUser = new User({
-        email,
-        password,
-        profile: {firstName, lastName, maidenName},
         verified: false,
         phone,
-        verificationCode,
-        image
+        verificationCode
       });
   
       await newUser.save();
       
-      const smsBody = `OME\nYour verification code is: ${verificationCode}`;
-      twilio.sendSMS(phone, smsBody);
-  
-      // res.status(201).json(generateTokenResponse(user));
-      res.status(200).json({msg: 'Account Created please verifiy phone number.'})
+      twilio.sendPhoneVerificationSMS(phone, verificationCode);
+
+      res.status(200).json({status: 'success', msg: 'Please verifiy phone number.'})
     }
   } catch (error) {
-    console.log(`Register Error: ${error}`);
+    console.log(`Register Phone Error: ${error}`);
+    res.status(500).json({error});
+  }
+}
+
+// Resend Verification Code
+exports.resend_code = async function(req, res, next) {
+  try {
+    const errors = [];
+    const phone = req.body.phone ? req.body.phone.trim() : undefined;
+    if (!phone) errors.push({msg: 'You must enter a phone number'});
+
+    if (errors.length > 0) {
+      return res.status(422).json({status: 'error', errors});
+    } else {
+      const foundUser = await User.findOne({phone});
+      if (!foundUser) return res.status(422).json({ status: 'error', errors: [{msg: 'That phone number is not registered.'}] });
+      
+      twilio.sendPhoneVerificationSMS(phone, foundUser.verificationCode);
+
+      res.status(200).json({status: 'success', msg: 'Please verifiy phone number.'})
+    }
+  } catch (error) {
+    console.log(`Register Phone Error: ${error}`);
     res.status(500).json({error});
   }
 }
 
 // Phone Verification Route
-exports.verifyPhone = async function(req, res, next) {
+exports.verify_phone = async function(req, res, next) {
   try {
-    console.log(req.body)
     const errors = [];
-    const email = req.body.email ? req.body.email.trim() : undefined;
+    const phone = req.body.phone ? req.body.phone.trim() : undefined;
     const verificationCode = req.body.verificationCode ? req.body.verificationCode.trim() : undefined;
   
     // check for errors
-    if (!email) errors.push({msg: 'You must enter an email address.'});
+    if (!phone) errors.push({msg: 'You must enter a phone number.'});
     if (!verificationCode) errors.push({msg: 'You must enter a Verification Code.'});
     
     if (errors.length > 0) {
-      return res.status(422).json(errors);
+      return res.status(422).json({status: 'error', errors});
     } else {
-      let user = await User.findOne({email});
-      if (!user)
-        return res.status(422).send({ error: 'There is no account with this email.' });
+      let foundUser = await User.findOne({phone});
+      if (!foundUser)
+        return res.status(422).send({ status: 'error', errors: [{msg: 'There is no account with this phone number.'}] });
 
-      if (Number(user.verificationCode) == Number(verificationCode)) {
-        await User.findOneAndUpdate({email}, {verified: true});
-        res.status(201).json(generateTokenResponse(user));
+      if (Number(foundUser.verificationCode) == Number(verificationCode)) {
+        await User.findOneAndUpdate({phone}, {verified: true});
+        res.status(200).json({status: 'success', msg: 'Phone number verified successfully.'});
       } else {
-        res.status(422).json({error: 'Verification code is not correct.'});
+        res.status(422).json({status: 'error', errors: [{msg: 'Verification code is not correct.'}]});
       }
     }
   } catch (error) {
     console.log(`Verify Phone Error: ${error}`);
+    res.status(500).json({error});
+  }
+}
+
+// registration route
+exports.register = async function(req, res, next) {
+  try {
+    const errors = [];
+    const phone = req.body.phone ? req.body.phone.trim() : undefined;
+    const email = req.body.email ? req.body.email.trim() : undefined;
+    const password = req.body.password ? req.body.password.trim() : undefined;
+    const image = req.body.image ? req.body.image.trim() : '';
+  
+    // check for errors
+    if (!email) errors.push({msg: 'You must enter an email address.'});
+    if (!password) errors.push({msg: 'You must enter a password.'});
+    else if (password.length < 6) errors.push({msg: 'Password must be at least 6 characters'});
+    if (!phone) errors.push({msg: 'You must enter a phone number'});
+    
+    if (errors.length > 0) {
+      return res.status(422).json({status: 'error', errors});
+    } else {
+      let foundUser = await User.findOne({email});
+      if (foundUser)
+        return res.status(422).json({ status: 'error', errors: [{msg: 'That email address is already in use.'}] });
+
+      foundUser = await User.findOne({phone});
+      if (!foundUser)
+        return res.status(422).json({ status: 'error', errors: [{msg: 'That phone number is not registered.'}] });
+  
+      const salt = crypto.randomBytes(16).toString('hex');
+      const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+      await User.findOneAndUpdate({phone}, {
+        email,
+        password: hash,
+        image,
+        salt,
+      });
+  
+      res.status(200).json({status: 'success', msg: 'Account Created.'})
+    }
+  } catch (error) {
+    console.log(`Register Error: ${error}`);
     res.status(500).json({error});
   }
 }

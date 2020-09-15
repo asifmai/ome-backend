@@ -12,7 +12,6 @@ const FacebookTokenStrategy = require('passport-facebook-token');
 const localOptions = { usernameField: 'email' };
 
 const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
-
   return User.findOne({ email: email })
     .then(user => {
       if(!user)
@@ -72,7 +71,6 @@ const jwtOptions = {
 
 // Setting up JWT login strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(jwtPayload, done) {
-
   return User.findById(jwtPayload._id)
     .then(user => {
       if (!user)
