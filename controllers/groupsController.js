@@ -45,7 +45,6 @@ module.exports.update_group_post = async (req, res) => {
   try {
     const groupId = req.body.groupId;
     const data = req.body.data;
-    console.log(data);
 
     await Group.findByIdAndUpdate(groupId, data);
 

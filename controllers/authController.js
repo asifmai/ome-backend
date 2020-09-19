@@ -43,7 +43,9 @@ exports.register_phone = async function(req, res, next) {
       const foundUser = await User.findOne({phone});
       if (foundUser) return res.status(422).json({ status: 'error', errors: [{msg: 'That phone number is already in use.'}] });
 
-      const verificationCode = genVerificationCode();
+      // @todo: uncomment the genVerificationCode function and remove the prevailing line
+      // const verificationCode = genVerificationCode();
+      const verificationCode = 123456;
       let newUser = new User({
         verified: false,
         phone,

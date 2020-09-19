@@ -238,6 +238,227 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Create Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1MDkwNSwiZXhwIjoxNjAwNTcwOTA1fQ.Chlh0wBgkQ8T3NFGmJr4FcGHD1qVcsHCrgK0Twvjsyo"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Group 2\",\r\n    \"image\": \"\",\r\n    \"members\": [\r\n        {\r\n            \"name\": \"iqbal\",\r\n            \"phone\": \"+923462440717\",\r\n            \"image\": \"\"\r\n        },\r\n        {\r\n            \"name\": \"Hameed\",\r\n            \"phone\": \"+923462440717\"\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/groups/create-group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups",
+								"create-group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1MzI5NiwiZXhwIjoxNjAwNTczMjk2fQ.czDxbGD4ItF0NmxpFak9u72hPQLZs_lBJUMAzetgkt4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1MzI5NiwiZXhwIjoxNjAwNTczMjk2fQ.czDxbGD4ItF0NmxpFak9u72hPQLZs_lBJUMAzetgkt4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/groups/delete-group/5f64f3e407139d1d0c81c5d8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups",
+								"delete-group",
+								"5f64f3e407139d1d0c81c5d8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1MzI5NiwiZXhwIjoxNjAwNTczMjk2fQ.czDxbGD4ItF0NmxpFak9u72hPQLZs_lBJUMAzetgkt4",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"groupId\": \"5f64f68f94360204142289f5\",\r\n    \"data\": {\r\n        \"image\": \"\",\r\n        \"createdAt\": \"2020-09-18T18:03:31.662Z\",\r\n        \"name\": \"Group 3\",\r\n        \"members\": [\r\n            {\r\n                \"image\": \"\",\r\n                \"name\": \"iqbala\",\r\n                \"phone\": \"+923462440719\"\r\n            },\r\n            {\r\n                \"image\": \"\",\r\n                \"name\": \"Hameeda\",\r\n                \"phone\": \"+923462440718\"\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/groups/update-group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups",
+								"update-group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Link Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/plaid/create-link-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plaid",
+								"create-link-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Checking Account",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bank\": \"Chase\",\r\n  \"bankId\": \"ins_3\",\r\n  \"token\": \"public-sandbox-e7983ea1-1319-48f9-8edd-6ea66c035ae7\",\r\n  \"account_id\": \"8LRxkyboonI7Gkv86b8bC1LzQPqM3QUwyln8E\",\r\n  \"subtype\": \"checking\",\r\n  \"type\": \"depository\",\r\n  \"name\": \"Plaid Checking\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/plaid/add-checking-account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plaid",
+								"add-checking-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transactions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/plaid/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plaid",
+								"transactions"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -246,20 +467,262 @@
 			"name": "OME Production",
 			"item": [
 				{
+					"name": "Create Link Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/plaid/create-link-token",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plaid",
+								"create-link-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Checking Account",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bank\": \"Chase\",\r\n  \"bankId\": \"ins_3\",\r\n  \"token\": \"public-sandbox-e7983ea1-1319-48f9-8edd-6ea66c035ae7\",\r\n  \"account_id\": \"8LRxkyboonI7Gkv86b8bC1LzQPqM3QUwyln8E\",\r\n  \"subtype\": \"checking\",\r\n  \"type\": \"depository\",\r\n  \"name\": \"Plaid Checking\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/plaid/add-checking-account",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plaid",
+								"add-checking-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transactions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/plaid/transactions",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"plaid",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Server Test",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://66.228.61.162:5555",
+							"raw": "http://157.230.3.19:5000",
 							"protocol": "http",
 							"host": [
-								"66",
-								"228",
-								"61",
-								"162"
+								"157",
+								"230",
+								"3",
+								"19"
 							],
-							"port": "5555"
+							"port": "5000"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjY0ZmRjNGNmYmNiZTg3NDUzYzhkM2EiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1NDEyMiwiZXhwIjoxNjAwNTc0MTIyfQ.Qk_BoB8z3ZYg-yHvPYRPY0xdUbedUM-XnVH56sUTFHk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/groups",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjY0ZmRjNGNmYmNiZTg3NDUzYzhkM2EiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1NDEyMiwiZXhwIjoxNjAwNTc0MTIyfQ.Qk_BoB8z3ZYg-yHvPYRPY0xdUbedUM-XnVH56sUTFHk"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Group 1\",\r\n    \"image\": \"\",\r\n    \"members\": [\r\n        {\r\n            \"name\": \"iqbal\",\r\n            \"phone\": \"+923462440717\",\r\n            \"image\": \"\"\r\n        },\r\n        {\r\n            \"name\": \"Hameed\",\r\n            \"phone\": \"+923462440717\"\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/groups/create-group",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups",
+								"create-group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjY0ZmRjNGNmYmNiZTg3NDUzYzhkM2EiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1NDEyMiwiZXhwIjoxNjAwNTc0MTIyfQ.Qk_BoB8z3ZYg-yHvPYRPY0xdUbedUM-XnVH56sUTFHk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/groups/delete-group/5f64fe1dcfbcbe87453c8d3e",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups",
+								"delete-group",
+								"5f64fe1dcfbcbe87453c8d3e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjY0ZmRjNGNmYmNiZTg3NDUzYzhkM2EiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1NDEyMiwiZXhwIjoxNjAwNTc0MTIyfQ.Qk_BoB8z3ZYg-yHvPYRPY0xdUbedUM-XnVH56sUTFHk",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"groupId\": \"5f64fe1dcfbcbe87453c8d3e\",\r\n    \"data\": {\r\n        \"image\": \"\",\r\n        \"createdAt\": \"2020-09-18T18:03:31.662Z\",\r\n        \"name\": \"Group 3\",\r\n        \"members\": [\r\n            {\r\n                \"image\": \"\",\r\n                \"name\": \"iqbala\",\r\n                \"phone\": \"+923462440719\"\r\n            },\r\n            {\r\n                \"image\": \"\",\r\n                \"name\": \"Hameeda\",\r\n                \"phone\": \"+923462440718\"\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/groups/update-group",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups",
+								"update-group"
+							]
 						}
 					},
 					"response": []
@@ -285,15 +748,15 @@
 							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\",\r\n    \"password\": \"mypass\"\r\n}"
 						},
 						"url": {
-							"raw": "http://66.228.61.162:5555/api/auth/login",
+							"raw": "http://157.230.3.19:5000/api/auth/login",
 							"protocol": "http",
 							"host": [
-								"66",
-								"228",
-								"61",
-								"162"
+								"157",
+								"230",
+								"3",
+								"19"
 							],
-							"port": "5555",
+							"port": "5000",
 							"path": [
 								"api",
 								"auth",
@@ -319,15 +782,15 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://66.228.61.162:5555/api/general",
+							"raw": "http://157.230.3.19:5000/api/general",
 							"protocol": "http",
 							"host": [
-								"66",
-								"228",
-								"61",
-								"162"
+								"157",
+								"230",
+								"3",
+								"19"
 							],
-							"port": "5555",
+							"port": "5000",
 							"path": [
 								"api",
 								"general"
@@ -357,15 +820,15 @@
 							"raw": "{\r\n    \"phone\": \"+923462440717\"\r\n}"
 						},
 						"url": {
-							"raw": "http://66.228.61.162:5555/api/auth/register-phone",
+							"raw": "http://157.230.3.19:5000/api/auth/register-phone",
 							"protocol": "http",
 							"host": [
-								"66",
-								"228",
-								"61",
-								"162"
+								"157",
+								"230",
+								"3",
+								"19"
 							],
-							"port": "5555",
+							"port": "5000",
 							"path": [
 								"api",
 								"auth",
@@ -393,18 +856,18 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"phone\": \"+923462440717\",\r\n    \"verificationCode\": \"951596\"\r\n}"
+							"raw": "{\r\n    \"phone\": \"+923462440717\",\r\n    \"verificationCode\": \"496957\"\r\n}"
 						},
 						"url": {
-							"raw": "http://66.228.61.162:5555/api/auth/verify-phone",
+							"raw": "http://157.230.3.19:5000/api/auth/verify-phone",
 							"protocol": "http",
 							"host": [
-								"66",
-								"228",
-								"61",
-								"162"
+								"157",
+								"230",
+								"3",
+								"19"
 							],
-							"port": "5555",
+							"port": "5000",
 							"path": [
 								"api",
 								"auth",
@@ -435,15 +898,15 @@
 							"raw": "{\r\n    \"phone\": \"+923462440717\"\r\n}"
 						},
 						"url": {
-							"raw": "http://66.228.61.162:5555/api/auth/resend-code",
+							"raw": "http://157.230.3.19:5000/api/auth/resend-code",
 							"protocol": "http",
 							"host": [
-								"66",
-								"228",
-								"61",
-								"162"
+								"157",
+								"230",
+								"3",
+								"19"
 							],
-							"port": "5555",
+							"port": "5000",
 							"path": [
 								"api",
 								"auth",
@@ -474,15 +937,15 @@
 							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\",\r\n    \"password\": \"mypass\",\r\n    \"phone\": \"+923462440717\"\r\n}"
 						},
 						"url": {
-							"raw": "http://66.228.61.162:5555/api/auth/register",
+							"raw": "http://157.230.3.19:5000/api/auth/register",
 							"protocol": "http",
 							"host": [
-								"66",
-								"228",
-								"61",
-								"162"
+								"157",
+								"230",
+								"3",
+								"19"
 							],
-							"port": "5555",
+							"port": "5000",
 							"path": [
 								"api",
 								"auth",
