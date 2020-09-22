@@ -10,8 +10,8 @@ require('./helpers/db')();
 
 // Middlewares
 app.use(logger('dev'));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json({extended: false}));
+app.use(express.urlencoded({ extended: false, limit: '100mb'}));
+app.use(express.json({extended: false, limit: '100mb'}));
 app.use(cors());
 
 // Routes
