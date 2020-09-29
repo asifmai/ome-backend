@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Transaction = require('../models/Transaction');
 const CheckingAccount = require('../models/CheckingAccount');
+const Reimbursement = require('../models/Reimbursement');
 const Group = require('../models/group');
 const crypto = require('crypto');
 
@@ -48,6 +49,9 @@ module.exports.updateimage_post = async (req, res) => {
 module.exports.deleteuser_get = async (req, res) => {
   try {
     const checkingAccount = await CheckingAccount.findOne({userId: req.user._id});
+    const transactions = await Transaction.find({account_id: checkingAccount._id});
+    const trsId = transactions.map(tr => tr._id);
+    await Reimbursement.deleteMany({transactionId: {$in: trsId}});
     
     await Transaction.deleteMany({account_id: checkingAccount._id});
     await CheckingAccount.deleteMany({userId: req.user._id});
