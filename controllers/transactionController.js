@@ -9,13 +9,15 @@ module.exports.transactions_get = async (req, res) => {
   
     if (!userAccount) return res.status(500).json({error: 'Checking account for user not found'});
   
-    const transactions = await Transaction.find({account_id: userAccount._id});
+    let transactions = await Transaction.find({account_id: userAccount._id});
+    transactions = transactions.map(tr => tr.toJSON());
     
     for (let i = 0; i < transactions.length; i++) {
       const reimbursements = await Reimbursement.find({transactionId: transactions[i]._id});
-      console.log(transactions[i]._id, reimbursements.length);
       if (reimbursements.length > 0) {
+        console.log(transactions[i]._id, reimbursements.length);
         transactions[i].reimbursements = reimbursements;
+        console.log(transactions[i]);
       };
     };
   
