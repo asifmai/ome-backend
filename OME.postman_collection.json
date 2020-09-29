@@ -25,6 +25,218 @@
 					"response": []
 				},
 				{
+					"name": "Update Names",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Iqbal\",\r\n    \"lastName\": \"Shahzada\",\r\n    \"middleName\": \"M\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/me/updatename",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"updatename"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"Iqbal\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/me/updateimage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"updateimage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/me/deleteuser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"deleteuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"newpass\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/me/updatepassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"updatepassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Reimbursement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzNjM2NjcsImV4cCI6MTYwMTQ4MzY2N30.C6xFtP4CzHtBCCkt5yxyHRGgJuE4L0l6vOPK0Lxhr5w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transactionId\": \"5f64f68f94360204142289f5\",\r\n    \"name\": \"Abdullah\",\r\n    \"phone\": \"+923456625505\",\r\n    \"amount\": \"500\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/reimbursement/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"reimbursement",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Reimbursent Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzNjM2NjcsImV4cCI6MTYwMTQ4MzY2N30.C6xFtP4CzHtBCCkt5yxyHRGgJuE4L0l6vOPK0Lxhr5w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reimbursementId\": \"5f72df6c818ded3a10a2be90\",\r\n    \"completed\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/reimbursement/updatecompleted",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"reimbursement",
+								"updatecompleted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Login",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
@@ -42,7 +254,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\",\r\n    \"password\": \"mypass\"\r\n}"
+							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\",\r\n    \"password\": \"newpass\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/auth/login",
@@ -440,12 +652,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzNjQzNTQsImV4cCI6MTYwMTQ4NDM1NH0.2uwzJk8ONVsgnnHnmKnK56uUsMqU5vvSctKlpNY61oY",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:5000/api/plaid/transactions",
+							"raw": "http://localhost:5000/api/transactions",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -453,8 +665,48 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"plaid",
 								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Transaction",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzNjY5MDAsImV4cCI6MTYwMTQ4NjkwMH0.7IPS1LarIONsgRTiEuB1CQIn2Hw4LY7JeS_3i7hfjSU"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"a\",\r\n    \"vendor\": \"Apple\",\r\n    \"category\": \"phones\",\r\n    \"amount\": 500,\r\n    \"date\": \"2020-09-28\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/transactions/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"transactions",
+								"add"
 							]
 						}
 					},
@@ -466,6 +718,277 @@
 		{
 			"name": "OME Production",
 			"item": [
+				{
+					"name": "Update Reimbursent Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzNjM2NjcsImV4cCI6MTYwMTQ4MzY2N30.C6xFtP4CzHtBCCkt5yxyHRGgJuE4L0l6vOPK0Lxhr5w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reimbursementId\": \"5f72df6c818ded3a10a2be90\",\r\n    \"completed\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/reimbursement/updatecompleted",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"reimbursement",
+								"updatecompleted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Reimbursement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzNjM2NjcsImV4cCI6MTYwMTQ4MzY2N30.C6xFtP4CzHtBCCkt5yxyHRGgJuE4L0l6vOPK0Lxhr5w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transactionId\": \"5f64f68f94360204142289f5\",\r\n    \"name\": \"Abdullah\",\r\n    \"phone\": \"+923456625505\",\r\n    \"amount\": \"500\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/reimbursement/add",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"reimbursement",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"newpass\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/me/updatepassword",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"updatepassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"Iqbal\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/me/updateimage",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"updateimage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Names",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Iqbal\",\r\n    \"lastName\": \"Shahzada\",\r\n    \"middleName\": \"M\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/me/updatename",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"updatename"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA"
+							}
+						],
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/me/deleteuser",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"deleteuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Transaction",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzNjY5MDAsImV4cCI6MTYwMTQ4NjkwMH0.7IPS1LarIONsgRTiEuB1CQIn2Hw4LY7JeS_3i7hfjSU"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"a\",\r\n    \"vendor\": \"Apple\",\r\n    \"category\": \"phones\",\r\n    \"amount\": 500,\r\n    \"date\": \"2020-09-28\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/transactions/add",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"transactions",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Create Link Token",
 					"request": {
@@ -552,7 +1075,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://157.230.3.19:5000/api/plaid/transactions",
+							"raw": "http://157.230.3.19:5000/api/transactions",
 							"protocol": "http",
 							"host": [
 								"157",
@@ -563,7 +1086,6 @@
 							"port": "5000",
 							"path": [
 								"api",
-								"plaid",
 								"transactions"
 							]
 						}
@@ -856,7 +1378,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"phone\": \"+923462440717\",\r\n    \"verificationCode\": \"496957\"\r\n}"
+							"raw": "{\r\n    \"phone\": \"+923462440717\",\r\n    \"verificationCode\": \"123456\"\r\n}"
 						},
 						"url": {
 							"raw": "http://157.230.3.19:5000/api/auth/verify-phone",

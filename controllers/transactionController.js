@@ -53,7 +53,7 @@ module.exports.addtransaction_get = async (req, res) => {
     });
     await newTransaction.save();
     
-    res.status(200).json({status: 200, msg: 'Transaction added successfully...'});
+    res.status(200).json({status: 200, msg: 'Transaction added successfully...',transaction:newTransaction});
   } catch (error) {
     console.log(`addtransaction_get error: ${error}`);
     res.status(500).json({error});
