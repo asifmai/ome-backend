@@ -13,6 +13,7 @@ module.exports.transactions_get = async (req, res) => {
     
     for (let i = 0; i < transactions.length; i++) {
       const reimbursements = await Reimbursement.find({transactionId: transactions[i]._id});
+      console.log(transactions[i]._id, reimbursements.length);
       if (reimbursements.length > 0) {
         transactions[i].reimbursements = reimbursements;
       };
