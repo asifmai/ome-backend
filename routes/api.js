@@ -42,6 +42,7 @@ router.get('/transactions', apiAuth, transactionController.transactions_get);
 router.post('/transactions/add', apiAuth, transactionController.addtransaction_get);
 
 // Reimbursement Routes
+router.get('/reimbursement', apiAuth, reimbursementController.reimbursement_get);
 router.post('/reimbursement/add', apiAuth, reimbursementController.addreimb_post);
 router.post('/reimbursement/updatecompleted', apiAuth, reimbursementController.updatecompleted_post);
 
