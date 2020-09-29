@@ -3,9 +3,11 @@ const passport = require('passport');
 const router = express.Router();
 
 const authController = require('../controllers/authController');
-const genController = require('../controllers/genController');
+const meController = require('../controllers/meController');
 const groupsController = require('../controllers/groupsController.js');
 const plaidController = require('../controllers/plaidController.js');
+const reimbursementController = require('../controllers/reimbController.js');
+const transactionController = require('../controllers/transactionController.js');
 const passportService = require('../config/passport');
 
 const login = passport.authenticate('local', { session: false });
@@ -19,7 +21,11 @@ router.post('/auth/register', authController.register);
 router.post('/auth/login', login, authController.login);
 
 // Main Routes
-router.get('/me', apiAuth, genController.route);
+router.get('/me', apiAuth, meController.me_get);
+router.post('/me/updatename', apiAuth, meController.updatename_post);
+router.post('/me/updateimage', apiAuth, meController.updateimage_post);
+router.get('/me/deleteuser', apiAuth, meController.deleteuser_get);
+router.post('/me/updatepassword', apiAuth, meController.updatepassword_post);
 
 // Group Routes
 router.get('/groups', apiAuth, groupsController.groups_get);
@@ -30,6 +36,13 @@ router.post('/groups/update-group', apiAuth, groupsController.update_group_post)
 // Plaid Routes
 router.get('/plaid/create-link-token', apiAuth, plaidController.create_link_token_get);
 router.post('/plaid/add-checking-account', apiAuth, plaidController.add_checking_account_post);
-router.get('/plaid/transactions', apiAuth, plaidController.transactions_get)
+
+// Transaction Routes
+router.get('/transactions', apiAuth, transactionController.transactions_get);
+router.post('/transactions/add', apiAuth, transactionController.addtransaction_get);
+
+// Reimbursement Routes
+router.post('/reimbursement/add', apiAuth, reimbursementController.addreimb_post);
+router.post('/reimbursement/updatecompleted', apiAuth, reimbursementController.updatecompleted_post);
 
 module.exports = router;

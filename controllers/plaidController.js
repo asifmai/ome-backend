@@ -130,24 +130,3 @@ module.exports.add_checking_account_post = async (req, res) => {
     res.status(500).json({error});
   }
 }
-
-module.exports.transactions_get = async (req, res) => {
-  try {
-    const userId = req.user._id;
-    const userAccount = await CheckingAccount.findOne({userId});
-  
-    if (!userAccount) return res.status(500).json({error: 'Checking account for user not found'});
-  
-    const transactions = await Transaction.find({account_id: userAccount._id});
-  
-    const response = {
-      account: userAccount,
-      transactions,
-    };
-    
-    res.status(200).json({status: 'success', data: response});
-  } catch (error) {
-    console.log(`Get Transactions Error: ${error}`);
-    res.status(500).json({error});
-  }
-}
