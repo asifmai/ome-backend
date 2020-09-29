@@ -53,7 +53,6 @@ module.exports.reimbursement_get = async (req, res) => {
     const account = await CheckingAccount.findOne({userId: req.user._id});
     const transactions = await Transaction.find({account_id: account._id});
     const trIds = transactions.map(tr => tr._id);
-    console.log(trIds);
     const reimbursements = await Reimbursement.find({transactionId: {$in: trIds}});
 
     

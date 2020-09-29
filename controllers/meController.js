@@ -63,7 +63,13 @@ module.exports.deleteuser_get = async (req, res) => {
 
 module.exports.updatepassword_post = async (req, res) => {
   try {
-    const {password} = req.body;
+    const {oldPassword, password} = req.body;
+
+    const oldPasswordFromDb = crypto.pbkdf2Sync(oldPassword, req.user.salt, 1000, 64, 'sha512').toString('hex');
+    if (oldPasswordFromDb != req.user.password) {
+      return res.status(422).json({status: 422, error: 'Old Password is incorrect'});
+    }
+
     const salt = crypto.randomBytes(16).toString('hex');
     const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
 
