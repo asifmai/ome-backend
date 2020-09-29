@@ -24,7 +24,7 @@ module.exports.addreimb_post = async (req, res) => {
     });
     await newReimbursement.save();
     
-    res.status(200).json({status: 200, msg: 'Reimbursement Added successfully...'});
+    res.status(200).json({status: 200, msg: newReimbursement});
   } catch (error) {
     console.log(`addreimb_post error: ${error}`);
     res.status(500).json({error});
