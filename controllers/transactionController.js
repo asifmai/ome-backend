@@ -37,9 +37,10 @@ module.exports.addtransaction_get = async (req, res) => {
     const category = req.body.category ? [req.body.category.trim()] : [];
     const amount = req.body.amount ? req.body.amount.trim() : '';
     const date = req.body.date ? req.body.date.trim() : '';
-    
-    if (type == '' || vendor == '' || amount == '' || date == '') {
-      return res.status(422).json({ status: 422, msg: 'Type, Vendor, Amount and Date are required...'});
+    const name = req.body.name ? req.body.name.trim() : '';
+
+    if (type == '' || vendor == '' || amount == '' || date == '' || name == '') {
+      return res.status(422).json({ status: 422, msg: 'Type, Name, Vendor, Amount and Date are required...'});
     }
 
     const account = await CheckingAccount.findOne({userId: req.user._id});
@@ -49,6 +50,7 @@ module.exports.addtransaction_get = async (req, res) => {
       category,
       amount,
       date,
+      name,
       account_id: account._id,
     });
     await newTransaction.save();
