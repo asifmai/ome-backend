@@ -1,6 +1,7 @@
 const Transaction = require('../models/Transaction');
 const CheckingAccount = require('../models/CheckingAccount');
 const Reimbursement = require('../models/Reimbursement');
+const LinkedAccount = require('../models/LinkedAccount');
 
 module.exports.transactions_get = async (req, res) => {
   try {
@@ -9,6 +10,8 @@ module.exports.transactions_get = async (req, res) => {
   
     if (!userAccount) return res.status(500).json({error: 'Checking account for user not found'});
   
+    const linkedAccounts = await LinkedAccount.find({accountId: userAccount._id});
+
     let transactions = await Transaction.find({account_id: userAccount._id});
     transactions = transactions.map(tr => tr.toJSON());
     
@@ -24,6 +27,7 @@ module.exports.transactions_get = async (req, res) => {
     const response = {
       account: userAccount,
       transactions,
+      linkedAccounts,
     };
     
     res.status(200).json({status: 'success', data: response});

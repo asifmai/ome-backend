@@ -2,6 +2,7 @@ const plaid = require("plaid");
 const moment = require('moment');
 const CheckingAccount = require('../models/CheckingAccount');
 const Transaction = require('../models/Transaction');
+const LinkedAccount = require('../models/LinkedAccount');
 const client = new plaid.Client({
   clientID: process.env.PLAID_CLIENT_ID,
   secret: process.env.PLAID_SECRET,
@@ -99,6 +100,23 @@ module.exports.add_checking_account_post = async (req, res) => {
           } else {
             // Save the transaction in Transaction table with account id
             console.log(transactionsResponse);
+            const linkedAccounts = transactionsResponse.accounts;
+
+            for (let i = 0; i < linkedAccounts.length; i++) {
+              const linkedAccount = new LinkedAccount({
+                accountId: account._id,
+                mask: linkedAccounts[i].mask,
+                name: linkedAccounts[i].name,
+                official_name: linkedAccounts[i].official_name,
+                subtype: linkedAccounts[i].subtype,
+                type: linkedAccounts[i].type,
+                balance: linkedAccounts[i].balances.available,
+                notification: 'phone'
+              });
+
+              await linkedAccount.save();
+            }
+
             const trs = transactionsResponse.transactions;
             for (let i = 0; i < trs.length; i++) {
               const transaction = new Transaction({
@@ -119,7 +137,7 @@ module.exports.add_checking_account_post = async (req, res) => {
               await transaction.save();
             }
 
-            res.status(200).json({status: 'success', msg: 'Account and Transaction Added...'});
+            res.status(200).json({status: 'success', msg: 'Checking Account, Linked Accouns and Transactions Added...'});
           }
         }
       );

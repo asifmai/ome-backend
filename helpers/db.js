@@ -10,7 +10,7 @@ module.exports = () => new Promise(async (resolve, reject) => {
       useUnifiedTopology: true,
     });
     
-    mongoose.set('debug', true);
+    // mongoose.set('debug', true);
 
     resolve(true);
   } catch (error) {
