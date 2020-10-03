@@ -20,6 +20,12 @@ const GroupSchema = new mongoose.Schema({
       },
     }
   ],
+  transactions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'transaction'
+    }
+  ],
   createdAt: {
     type: Date,
     default: new Date,
@@ -27,4 +33,3 @@ const GroupSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('group', GroupSchema);
-

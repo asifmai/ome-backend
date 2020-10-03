@@ -8,6 +8,7 @@ const groupsController = require('../controllers/groupsController.js');
 const plaidController = require('../controllers/plaidController.js');
 const reimbursementController = require('../controllers/reimbController.js');
 const transactionController = require('../controllers/transactionController.js');
+const notificationController = require('../controllers/notificationController');
 const passportService = require('../config/passport');
 
 const login = passport.authenticate('local', { session: false });
@@ -45,5 +46,9 @@ router.post('/transactions/add', apiAuth, transactionController.addtransaction_g
 router.get('/reimbursement', apiAuth, reimbursementController.reimbursement_get);
 router.post('/reimbursement/add', apiAuth, reimbursementController.addreimb_post);
 router.post('/reimbursement/updatecompleted', apiAuth, reimbursementController.updatecompleted_post);
+
+// Notifications Routes
+router.get('/notifications', apiAuth, notificationController.notifications_get);
+router.post('/notifications/save', apiAuth, notificationController.notifications_post);
 
 module.exports = router;

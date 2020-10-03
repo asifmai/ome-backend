@@ -50,12 +50,12 @@ module.exports.updatecompleted_post = async (req, res) => {
 
 module.exports.reimbursement_get = async (req, res) => {
   try {
+    // Fetch Reimbursements created by the user / Reimb created for a user
     const account = await CheckingAccount.findOne({userId: req.user._id});
     const transactions = await Transaction.find({account_id: account._id});
     const trIds = transactions.map(tr => tr._id);
     const reimbursements = await Reimbursement.find({transactionId: {$in: trIds}});
 
-    
     res.status(200).json({status: 200, data: reimbursements});
   } catch (error) {
     console.log(`reimbursement_get error: ${error}`);
