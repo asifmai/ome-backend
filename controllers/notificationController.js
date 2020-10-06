@@ -21,13 +21,13 @@ module.exports.notifications_get = async (req, res) => {
 }
 
 module.exports.notifications_post = async (req, res) => {
-  // try {
+  try {
     const group_addsMe = req.body.group_addsMe ? req.body.group_addsMe.trim() : '';
     const group_addsExp = req.body.group_addsExp ? req.body.group_addsExp.trim() : '';
     const group_paysMe = req.body.group_paysMe ? req.body.group_paysMe.trim() : '';
     const tr_dailySpend = req.body.tr_dailySpend ? req.body.tr_dailySpend.trim() : '';
     const tr_weeklySpend = req.body.tr_weeklySpend ? req.body.tr_weeklySpend.trim() : '';
-    console.log(req.body.linkedAccounts)
+    // console.log(req.body.linkedAccounts)
     const linkedAccounts = req.body.linkedAccounts ? req.body.linkedAccounts : '';
 
     if (group_addsMe == '' || group_addsExp == '' || group_paysMe == '' || tr_dailySpend == '' || tr_weeklySpend == '' || linkedAccounts == '') {
@@ -59,8 +59,8 @@ module.exports.notifications_post = async (req, res) => {
     };
     
     res.status(200).json({status: 200, data: 'Notifications for user updated successfully'});
-  // } catch (error) {
-  //   console.log(`notifications_post error: ${error}`);
-  //   res.status(500).json({error});
-  // }
+  } catch (error) {
+    console.log(`notifications_post error: ${error}`);
+    res.status(500).json({error});
+  }
 }

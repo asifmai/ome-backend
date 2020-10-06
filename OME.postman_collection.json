@@ -25,6 +25,68 @@
 					"response": []
 				},
 				{
+					"name": "Get Notifications Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE3MDc1MjQsImV4cCI6MTYwMTgyNzUyNH0.-TCZCJbZt4IedBu9u9AemnCEnuHSTbJqI0g6c7M6Ko4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Notifications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE3MDc1MjQsImV4cCI6MTYwMTgyNzUyNH0.-TCZCJbZt4IedBu9u9AemnCEnuHSTbJqI0g6c7M6Ko4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"group_addsMe\": \"phone\",\r\n    \"group_addsExp\": \"phone\",\r\n    \"group_paysMe\": \"phone\",\r\n    \"tr_dailySpend\": \"phone\",\r\n    \"tr_weeklySpend\": \"phone\",\r\n    \"linkedAccounts\": [\r\n        {\r\n            \"_id\": \"5f784ea06b4dfb33c42b1549\",\r\n            \"notification\": \"mail\"\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/notifications/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"notifications",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update Names",
 					"request": {
 						"method": "POST",
@@ -141,12 +203,12 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTM2MDA3NywiZXhwIjoxNjAxNDgwMDc3fQ.uGfwt3oInKjM35ylPdY1iC1119IwbNwJCzasxySNYvA"
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzODE2MDUsImV4cCI6MTYwMTUwMTYwNX0.BhLTmySObTApNp5dZ92QojPdI4CCCC3rt7gofWv5Gsw"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"newpass\"\r\n}"
+							"raw": "{\r\n    \"oldPassword\": \"newpass\",\r\n    \"password\": \"newpass\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/me/updatepassword",
@@ -459,7 +521,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1MDkwNSwiZXhwIjoxNjAwNTcwOTA1fQ.Chlh0wBgkQ8T3NFGmJr4FcGHD1qVcsHCrgK0Twvjsyo"
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE5OTEyNTIsImV4cCI6MTYwMjExMTI1Mn0.DRtMUUG8aZFgmZE-R7B4ZrN-hJxTGa1gcTq9i0QYNMw"
 							},
 							{
 								"key": "Content-Type",
@@ -469,7 +531,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Group 2\",\r\n    \"image\": \"\",\r\n    \"members\": [\r\n        {\r\n            \"name\": \"iqbal\",\r\n            \"phone\": \"+923462440717\",\r\n            \"image\": \"\"\r\n        },\r\n        {\r\n            \"name\": \"Hameed\",\r\n            \"phone\": \"+923462440717\"\r\n        }\r\n    ]\r\n}"
+							"raw": "{\r\n    \"name\": \"Special Group\",\r\n    \"image\": \"\",\r\n    \"members\": [\r\n        {\r\n            \"name\": \"iqbal\",\r\n            \"phone\": \"+923458756746\",\r\n            \"image\": \"\"\r\n        },\r\n        {\r\n            \"name\": \"Javed\",\r\n            \"phone\": \"+923212199366\"\r\n        }\r\n    ]\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/groups/create-group",
@@ -494,7 +556,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1MzI5NiwiZXhwIjoxNjAwNTczMjk2fQ.czDxbGD4ItF0NmxpFak9u72hPQLZs_lBJUMAzetgkt4",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE5OTEyNTIsImV4cCI6MTYwMjExMTI1Mn0.DRtMUUG8aZFgmZE-R7B4ZrN-hJxTGa1gcTq9i0QYNMw",
 								"type": "text"
 							}
 						],
@@ -508,6 +570,47 @@
 							"path": [
 								"api",
 								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Transaction to Group",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE5ODk1NDgsImV4cCI6MTYwMjEwOTU0OH0.c8rDv8eDuy0-zCfqFyaoTuwbWewuto44QvFsTI8nfP0"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"groupId\": \"5f7c67e2f413453f48da45b8\",\r\n    \"transactionId\": \"5f784ea06b4dfb33c42b1553\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/groups/add-transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups",
+								"add-transaction"
 							]
 						}
 					},
@@ -548,7 +651,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDQ1MzI5NiwiZXhwIjoxNjAwNTczMjk2fQ.czDxbGD4ItF0NmxpFak9u72hPQLZs_lBJUMAzetgkt4",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE5ODc1MzUsImV4cCI6MTYwMjEwNzUzNX0.WgKt-usx1scQsqZeJXfUd7Eef0CAay5p0wrUg6c-Q7c",
 								"type": "text"
 							},
 							{
@@ -559,7 +662,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"groupId\": \"5f64f68f94360204142289f5\",\r\n    \"data\": {\r\n        \"image\": \"\",\r\n        \"createdAt\": \"2020-09-18T18:03:31.662Z\",\r\n        \"name\": \"Group 3\",\r\n        \"members\": [\r\n            {\r\n                \"image\": \"\",\r\n                \"name\": \"iqbala\",\r\n                \"phone\": \"+923462440719\"\r\n            },\r\n            {\r\n                \"image\": \"\",\r\n                \"name\": \"Hameeda\",\r\n                \"phone\": \"+923462440718\"\r\n            }\r\n        ]\r\n    }\r\n}"
+							"raw": "{\r\n    \"groupId\": \"5f7c6afb753f5f0eb895a70c\",\r\n    \"data\": {\r\n        \"image\": \"\",\r\n        \"createdAt\": \"2020-09-18T18:03:31.662Z\",\r\n        \"name\": \"Group 5\",\r\n        \"members\": [\r\n            {\r\n                \"image\": \"\",\r\n                \"name\": \"iqbala\",\r\n                \"phone\": \"+923212199355\"\r\n            },\r\n            {\r\n                \"image\": \"\",\r\n                \"name\": \"Hameeda\",\r\n                \"phone\": \"+923462440718\"\r\n            }\r\n        ]\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/groups/update-group",
@@ -579,15 +682,22 @@
 				},
 				{
 					"name": "Create Link Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE3MTc1MTcsImV4cCI6MTYwMTgzNzUxN30.uU7mLK8yhWIMNJm1avYWRvA43j1EmtUIMWbRih-NviA",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:5000/api/plaid/create-link-token",
 							"protocol": "http",
@@ -621,13 +731,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMDUzNjA5OCwiZXhwIjoxNjAwNjU2MDk4fQ.q3Mx3DfBtzkBw4RjgLOuuGpQnpFE4r9f_pwqEo3Wn4o",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE3MTc1MTcsImV4cCI6MTYwMTgzNzUxN30.uU7mLK8yhWIMNJm1avYWRvA43j1EmtUIMWbRih-NviA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"bank\": \"Chase\",\r\n  \"bankId\": \"ins_3\",\r\n  \"token\": \"public-sandbox-e7983ea1-1319-48f9-8edd-6ea66c035ae7\",\r\n  \"account_id\": \"8LRxkyboonI7Gkv86b8bC1LzQPqM3QUwyln8E\",\r\n  \"subtype\": \"checking\",\r\n  \"type\": \"depository\",\r\n  \"name\": \"Plaid Checking\"\r\n}"
+							"raw": "{\r\n  \"bank\": \"Chase\",\r\n  \"bankId\": \"ins_3\",\r\n  \"token\": \"public-sandbox-6c302d75-210e-4ebd-9b6f-7b1623b5db23\",\r\n  \"account_id\": \"8LRxkyboonI7Gkv86b8bC1LzQPqM3QUwyln8E\",\r\n  \"subtype\": \"checking\",\r\n  \"type\": \"depository\",\r\n  \"name\": \"Plaid Checking\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/plaid/add-checking-account",
@@ -652,7 +762,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDEzNjQzNTQsImV4cCI6MTYwMTQ4NDM1NH0.2uwzJk8ONVsgnnHnmKnK56uUsMqU5vvSctKlpNY61oY",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE5ODk1NDgsImV4cCI6MTYwMjEwOTU0OH0.c8rDv8eDuy0-zCfqFyaoTuwbWewuto44QvFsTI8nfP0",
 								"type": "text"
 							}
 						],
@@ -718,6 +828,157 @@
 		{
 			"name": "OME Production",
 			"item": [
+				{
+					"name": "Add Transaction to Group",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDE5ODk1NDgsImV4cCI6MTYwMjEwOTU0OH0.c8rDv8eDuy0-zCfqFyaoTuwbWewuto44QvFsTI8nfP0"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"groupId\": \"5f7c67e2f413453f48da45b8\",\r\n    \"transactionId\": \"5f784ea06b4dfb33c42b1553\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/groups/add-transaction",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"groups",
+								"add-transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\",\r\n    \"password\": \"mypass\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Notifications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjY4ZmZiYTUzNGU4ZDYxNWI4MDc1OWYiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTcxMTYwNSwiZXhwIjoxNjAxODMxNjA1fQ.FAokRgg6y7-EUBFGXdt6nEdDiNQNA_fqDNYtvziEk1M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"group_addsMe\": \"phone\",\r\n    \"group_addsExp\": \"phone\",\r\n    \"group_paysMe\": \"phone\",\r\n    \"tr_dailySpend\": \"phone\",\r\n    \"tr_weeklySpend\": \"phone\",\r\n    \"linkedAccounts\": [\r\n        {\r\n            \"_id\": \"5f784ea06b4dfb33c42b1549\",\r\n            \"notification\": \"mail\"\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/notifications/save",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"notifications",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Notifications Settings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjY4ZmZiYTUzNGU4ZDYxNWI4MDc1OWYiLCJmaXJzdE5hbWUiOiIiLCJtaWRkbGVOYW1lIjoiIiwibGFzdE5hbWUiOiIiLCJlbWFpbCI6ImFzaWZtYWlAaG90bWFpbC5jb20iLCJpbWFnZSI6IiIsInBob25lIjoiKzkyMzQ2MjQ0MDcxNyIsImlhdCI6MTYwMTcxMTYwNSwiZXhwIjoxNjAxODMxNjA1fQ.FAokRgg6y7-EUBFGXdt6nEdDiNQNA_fqDNYtvziEk1M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/notifications",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Update Reimbursent Status",
 					"request": {
@@ -1244,45 +1505,6 @@
 								"api",
 								"groups",
 								"update-group"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\",\r\n    \"password\": \"mypass\"\r\n}"
-						},
-						"url": {
-							"raw": "http://157.230.3.19:5000/api/auth/login",
-							"protocol": "http",
-							"host": [
-								"157",
-								"230",
-								"3",
-								"19"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"auth",
-								"login"
 							]
 						}
 					},

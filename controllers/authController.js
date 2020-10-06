@@ -2,6 +2,7 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../models/user');
+const Group = require('../models/group');
 const config = require('../config/main');
 const {genVerificationCode} = require('../helpers/random');
 const twilio = require('../helpers/twilio');
@@ -146,13 +147,30 @@ exports.register = async function(req, res, next) {
   
       const salt = crypto.randomBytes(16).toString('hex');
       const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
-      await User.findOneAndUpdate({phone}, {
+      const newUser = await User.findOneAndUpdate({phone}, {
         email,
         password: hash,
         image,
         salt,
       });
-  
+      console.log(newUser);
+
+      // See if the user is already added to a group
+      const groups = await Group.find();
+      for (let i = 0; i < groups.length; i++) {
+        let members = groups[i].members;
+        if (members.some(mem => mem.phone == newUser.phone)) {
+          console.log('User found in a group');
+          members = members.map(mem => {
+            if (mem.phone == newUser.phone) {
+              mem.user = newUser._id;
+            }
+            return mem;
+          });
+          await Group.findByIdAndUpdate(groups[i]._id, {members: members});
+        }
+      }
+
       res.status(200).json({status: 'success', msg: 'Account Created.'})
     }
   } catch (error) {

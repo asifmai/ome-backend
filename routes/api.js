@@ -33,6 +33,7 @@ router.get('/groups', apiAuth, groupsController.groups_get);
 router.post('/groups/create-group', apiAuth, groupsController.create_group_post);
 router.get('/groups/delete-group/:groupid', apiAuth, groupsController.delete_group_get);
 router.post('/groups/update-group', apiAuth, groupsController.update_group_post);
+router.post('/groups/add-transaction', apiAuth, groupsController.add_transaction_post);
 
 // Plaid Routes
 router.get('/plaid/create-link-token', apiAuth, plaidController.create_link_token_get);
