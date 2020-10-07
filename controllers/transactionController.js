@@ -6,8 +6,7 @@ const LinkedAccount = require('../models/LinkedAccount');
 module.exports.transactions_get = async (req, res) => {
   try {
     const userId = req.user._id;
-    const userAccount = await CheckingAccount.findOne({userId});
-  
+    const userAccount = await CheckingAccount.findOne({userId});  
     if (!userAccount) return res.status(500).json({error: 'Checking account for user not found'});
   
     const linkedAccounts = await LinkedAccount.find({accountId: userAccount._id});

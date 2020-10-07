@@ -5,7 +5,7 @@ const config = require('./main');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local');
-const FacebookTokenStrategy = require('passport-facebook-token');
+// const FacebookTokenStrategy = require('passport-facebook-token');
 
 // ============================ Custom Login Strategy ============================ //
 
