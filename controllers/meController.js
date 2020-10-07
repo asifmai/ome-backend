@@ -88,3 +88,22 @@ module.exports.updatepassword_post = async (req, res) => {
     res.status(500).json({error});
   }
 }
+
+module.exports.update_passenabled_post = async (req, res) => {
+  try {
+    const passEnabled = req.body.passEnabled ? req.body.passEnabled : '';
+
+    if (passEnabled == '') {
+      return res.status(422).json({status: 422, error: 'Please send a passEnabled boolean'});
+    }
+
+    await User.findByIdAndUpdate(req.user._id, {
+      passEnabled
+    });
+    
+    res.status(200).json({status: 200, msg: 'passEnabled updated successfully...'});
+  } catch (error) {
+    console.log(`update_passenabled_post error: ${error}`);
+    res.status(500).json({error});
+  }  
+}

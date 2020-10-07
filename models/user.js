@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  passEnabled: {
+    type: Boolean,
+    default: false,
+  },
   verificationCode : Number,
   password: String,
   salt: String,

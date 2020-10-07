@@ -25,6 +25,7 @@ router.post('/auth/login', login, authController.login);
 
 // Main Routes
 router.get('/me', apiAuth, meController.me_get);
+router.post('/me/update-passenabled', apiAuth, meController.update_passenabled_post);
 router.post('/me/updatename', apiAuth, meController.updatename_post);
 router.post('/me/updateimage', apiAuth, meController.updateimage_post);
 router.get('/me/deleteuser', apiAuth, meController.deleteuser_get);
