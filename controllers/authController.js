@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../models/user');
 const Group = require('../models/group');
+const Notification = require('../models/Notification');
 const config = require('../config/main');
 const {genVerificationCode} = require('../helpers/random');
 const twilio = require('../helpers/twilio');
@@ -171,10 +172,38 @@ exports.register = async function(req, res, next) {
         }
       }
 
+      // Create Notifications Entry for the user
+      const newNotification = new Notification({
+        userId: newUser._id,
+        group_addsExp: 'phone',
+        group_addsMe: 'phone',
+        group_paysMe: 'phone',
+        tr_dailySpend: 'phone',
+        tr_weeklySpend: 'phone',
+      });
+      await newNotification.save();
+
       res.status(200).json({status: 'success', msg: 'Account Created.'})
     }
   } catch (error) {
     console.log(`Register Error: ${error}`);
+    res.status(500).json({error});
+  }
+}
+
+exports.check_email_post = async (req, res) => {
+  try {
+    const email = req.body.email ? req.body.email.trim() : '';
+    if (email == '') return res.status(422).json({status: 422, msg: 'email is required...'});
+
+    const foundUser = await User.findOne({email});
+    if (foundUser) {
+      res.status(200).json({status: 200, available: false});
+    } else {
+      res.status(200).json({status: 200, available: true});
+    }
+  } catch (error) {
+    console.log(`check_email_post error: ${error}`);
     res.status(500).json({error});
   }
 }

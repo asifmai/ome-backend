@@ -19,7 +19,9 @@ router.post('/auth/register-phone', authController.register_phone);
 router.post('/auth/verify-phone', authController.verify_phone);
 router.post('/auth/resend-code', authController.resend_code);
 router.post('/auth/register', authController.register);
+router.post('/auth/check-email', authController.check_email_post);
 router.post('/auth/login', login, authController.login);
+
 
 // Main Routes
 router.get('/me', apiAuth, meController.me_get);
