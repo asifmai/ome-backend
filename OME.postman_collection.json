@@ -9,6 +9,37 @@
 			"name": "OME Local",
 			"item": [
 				{
+					"name": "Check Email Availability",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/check-email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"check-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Server Test",
 					"request": {
 						"method": "GET",
@@ -495,7 +526,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\",\r\n    \"password\": \"mypass\",\r\n    \"phone\": \"+923462440717\"\r\n}"
+							"raw": "{\r\n    \"email\": \"asifmai2k@hotmail.com\",\r\n    \"password\": \"mypass\",\r\n    \"phone\": \"+923462440718\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/auth/register",
@@ -1694,6 +1725,40 @@
 								"api",
 								"auth",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Email Availability",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/auth/check-email",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"check-email"
 							]
 						}
 					},

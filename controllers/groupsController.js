@@ -26,7 +26,7 @@ module.exports.create_group_post = async (req, res) => {
     const newGroup = new Group({userId, ...group});
     await newGroup.save();
   
-    res.status(200).json({status: 'success', msg: 'Group created successfully'});
+    res.status(200).json({status: 'success', msg: 'Group created successfully', group: newGroup});
   } catch (error) {
     console.log(`Create Group Error: ${error}`);
     res.status(500).json({error});
@@ -83,9 +83,9 @@ module.exports.update_group_post = async (req, res) => {
       }
     }
 
-    await Group.findByIdAndUpdate(groupId, group);
+    const updatedGroup = await Group.findByIdAndUpdate(groupId, group);
 
-    res.status(200).json({status: 'success', msg: 'Group Updated successfully'});
+    res.status(200).json({status: 'success', msg: 'Group Updated successfully', group: updatedGroup});
   } catch (error) {
     console.log(`Create Group Error: ${error}`);
     res.status(500).json({error});
