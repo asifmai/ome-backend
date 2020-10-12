@@ -40,6 +40,37 @@
 					"response": []
 				},
 				{
+					"name": "Update Pass Enabled",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"asifmai@hotmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/check-email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"check-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Server Test",
 					"request": {
 						"method": "GET",
@@ -1759,6 +1790,45 @@
 								"api",
 								"auth",
 								"check-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Pass Enabled",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjYwNWRiZTllMTY0OTI5YjAxMWIwODQiLCJmaXJzdE5hbWUiOiJJcWJhbCIsIm1pZGRsZU5hbWUiOiJNIiwibGFzdE5hbWUiOiJTaGFoemFkYSIsImVtYWlsIjoiYXNpZm1haUBob3RtYWlsLmNvbSIsImltYWdlIjoiSXFiYWwiLCJwaG9uZSI6Iis5MjM0NjI0NDA3MTciLCJpYXQiOjE2MDIwNjc4NDcsImV4cCI6MTYwMjE4Nzg0N30.C3BHjMG360sdx_m2sBqpDKAp3iNFxe_lKCXeEuaEa0s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passEnabled\": \"true\"\r\n}"
+						},
+						"url": {
+							"raw": "http://157.230.3.19:5000/api/me/update-passenabled",
+							"protocol": "http",
+							"host": [
+								"157",
+								"230",
+								"3",
+								"19"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"me",
+								"update-passenabled"
 							]
 						}
 					},
