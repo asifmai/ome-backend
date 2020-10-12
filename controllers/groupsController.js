@@ -44,7 +44,7 @@ module.exports.groups_get = async (req, res) => {
   try {
     const userId = req.user._id;
 
-    const groups = await Group.find({ userId })
+    let groups = await Group.find({ userId })
       .populate({
         path: "members transactions",
         populate: {
@@ -123,29 +123,30 @@ module.exports.add_transaction_post = async (req, res) => {
     const foundGroup = await Group.findById(groupId);
     const foundTransaction = await Transaction.findById(transactionId);
 
-    if (!foundGroup)
-      return res.status(422).json({ status: 422, msg: "Group not found" });
-    if (!foundTransaction)
-      return res
-        .status(422)
-        .json({ status: 422, msg: "Transaction not found" });
+    // if (!foundGroup)
+    //   return res.status(422).json({ status: 422, msg: "Group not found" });
+    // if (!foundTransaction)
+    //   return res
+    //     .status(422)
+    //     .json({ status: 422, msg: "Transaction not found" });
 
     const transactions = foundGroup.transactions;
-    if (transactions.some((tr) => tr == transactionId))
-      return res.status(422).json({
-        status: 422,
-        msg: "Transaction is already added to the group",
-      });
+    // if (transactions.some((tr) => tr == transactionId))
+    //   return res.status(422).json({
+    //     status: 422,
+    //     msg: "Transaction is already added to the group",
+    //   });
     transactions.push(transactionId);
 
     await Group.findByIdAndUpdate(groupId, {
       transactions,
     });
 
+    let group = await Group.findOne({ _id: groupId }).populate("transactions");
     res.status(200).json({
       status: "success",
       msg: "Transaction Added to Group successfully",
-      transactions,
+      group: group,
     });
   } catch (error) {
     console.log(`Add Transaction to Group Error: ${error}`);
