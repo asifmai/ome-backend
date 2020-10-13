@@ -2,23 +2,24 @@ const User = require("../models/user");
 const Reimbursement = require("../models/Reimbursement");
 const Transaction = require("../models/Transaction");
 const CheckingAccount = require("../models/CheckingAccount");
-const twilio = require("../helpers/twilio");
+const notify = require('../helpers/notify');
+const formatter = require('../helpers/formatter');
 
 module.exports.addreimb_post = async (req, res) => {
   try {
-    let { transactionId, name, phone, amount } = req.body;
+    let { transactionId, name, amount } = req.body;
+    const phone = formatter.formatPhone(req.body.phone);
 
     const transaction = await Transaction.findById(transactionId);
-    phone = phone.replace(/\D/g, "");
-    phone = phone.replace(" ", "");
+    
     const reimbursedUser = await User.findOne({ phone });
     if (!reimbursedUser) {
-      twilio.sendInvitation(
-        phone,
-        req.user.profile.firstName,
-        transaction.name,
-        amount
-      );
+      const smsBody = `OME\n${req.user.profile.firstName} has sent you a reimbursement of amount ${amount} against transaction ${transaction.name}. Please download OME from the link below to signup.`;
+      notify.sendSMS(smsBody, phone);
+    } else {
+      const smsBody = `OME\n${req.user.profile.firstName} has sent you a reimbursement of amount ${amount} against transaction ${transaction.name}.`;
+      notify.sendSMS(smsBody, phone);
+      notify.sendEmail('Someone sent you a reimbursement', smsBody, reimbursedUser.email)
     }
 
     reimbersedUserId = reimbursedUser ? reimbursedUser._id : "";
