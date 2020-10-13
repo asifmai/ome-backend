@@ -1,8 +1,8 @@
 const plaid = require("plaid");
-const moment = require('moment');
-const CheckingAccount = require('../models/CheckingAccount');
-const Transaction = require('../models/Transaction');
-const LinkedAccount = require('../models/LinkedAccount');
+const moment = require("moment");
+const CheckingAccount = require("../models/CheckingAccount");
+const Transaction = require("../models/Transaction");
+const LinkedAccount = require("../models/LinkedAccount");
 const client = new plaid.Client({
   clientID: process.env.PLAID_CLIENT_ID,
   secret: process.env.PLAID_SECRET,
@@ -20,7 +20,7 @@ module.exports.create_link_token_get = (req, res) => {
         client_user_id: req.user._id,
       },
       client_name: "OME",
-      products: ['transactions', 'auth'],
+      products: ["transactions", "auth"],
       country_codes: ["US"],
       language: "en",
     };
@@ -35,19 +35,29 @@ module.exports.create_link_token_get = (req, res) => {
     });
   } catch (error) {
     console.log(`Create Link Token Error: ${error}`);
-    res.status(500).json({error});
+    res.status(500).json({ error });
   }
-}
+};
+
+module.exports.remove_checking_account_get = async (req, res) => {
+  await CheckingAccount.remove({ userId: req.user._id });
+
+  res.send("Account removed");
+};
 
 module.exports.add_checking_account_post = async (req, res) => {
   try {
     const { bank, bankId, token, account_id, subtype, type, name } = req.body;
     console.log(req.body);
 
-    const foundAccount = await CheckingAccount.findOne({userId: req.user._id});
+    const foundAccount = await CheckingAccount.findOne({
+      userId: req.user._id,
+    });
 
     if (foundAccount) {
-      return res.status(500).json({error: 'The account is already created...'});
+      return res
+        .status(500)
+        .json({ error: "The account is already created..." });
     }
 
     const account = new CheckingAccount({
@@ -111,7 +121,7 @@ module.exports.add_checking_account_post = async (req, res) => {
                 subtype: linkedAccounts[i].subtype,
                 type: linkedAccounts[i].type,
                 balance: linkedAccounts[i].balances.available,
-                notification: 'phone'
+                notification: "phone",
               });
 
               await linkedAccount.save();
@@ -137,14 +147,16 @@ module.exports.add_checking_account_post = async (req, res) => {
               await transaction.save();
             }
 
-            res.status(200).json({status: 'success', msg: 'Checking Account, Linked Accouns and Transactions Added...'});
+            res.status(200).json({
+              status: "success",
+              msg: "Checking Account, Linked Accouns and Transactions Added...",
+            });
           }
         }
       );
-    })
-    
+    });
   } catch (error) {
     console.log(`Add Checking Account Error: ${error}`);
-    res.status(500).json({error});
+    res.status(500).json({ error });
   }
-}
+};

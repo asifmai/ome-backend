@@ -69,6 +69,12 @@ router.post(
   plaidController.add_checking_account_post
 );
 
+router.delete(
+  "/plaid/remove-checking-account",
+  apiAuth,
+  plaidController.remove_checking_account_get
+);
+
 // Transaction Routes
 router.get("/transactions", apiAuth, transactionController.transactions_get);
 router.post(
