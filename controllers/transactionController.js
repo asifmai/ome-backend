@@ -78,6 +78,7 @@ module.exports.addtransaction_get = async (req, res) => {
       date,
       name,
       account_id: account._id,
+      user: req.user._id,
     });
     await newTransaction.save();
 

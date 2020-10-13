@@ -15,6 +15,10 @@ const TransactionSchema = new mongoose.Schema({
   account_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'checkingaccount'
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
   }
 });
 

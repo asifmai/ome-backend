@@ -142,6 +142,7 @@ module.exports.add_checking_account_post = async (req, res) => {
                 transaction_id: trs[i].transaction_id,
                 transaction_type: trs[i].transaction_type,
                 account_id: account._id,
+                user: req.user._id,
               });
 
               await transaction.save();
