@@ -1,8 +1,8 @@
 const Group = require("../models/group");
 const User = require("../models/user");
 const Transaction = require("../models/Transaction");
-const notify = require('../helpers/notify');
-const formatter = require('../helpers/formatter');
+const notify = require("../helpers/notify");
+const formatter = require("../helpers/formatter");
 
 module.exports.create_group_post = async (req, res) => {
   try {
@@ -12,18 +12,24 @@ module.exports.create_group_post = async (req, res) => {
 
     for (let i = 0; i < members.length; i++) {
       members[i].user = null;
-      const foundUser = await User.findOne({ phone: formatter.formatPhone(members[i].phone) });
+      const foundUser = await User.findOne({
+        phone: formatter.formatPhone(members[i].phone),
+      });
       if (foundUser) {
         if (foundUser.phone == req.user.phone) {
           return res.status(422).json({
             status: 422,
             msg: "You cannot add yourself as a group member",
           });
-        };
+        }
 
         const notifBody = `OME\n${req.user.profile.firstName} has added you to a group`;
         notify.sendSMS(notifBody, foundUser.phone);
-        notify.sendEmail('Someone added you to a group', notifBody, foundUser.email);
+        notify.sendEmail(
+          "Someone added you to a group",
+          notifBody,
+          foundUser.email
+        );
         members[i].user = foundUser._id;
       } else {
         const smsBody = `OME\n${req.user.profile.firstName} has added you to a group. Please download OME from the link below to signup.`;
@@ -100,10 +106,14 @@ module.exports.update_group_post = async (req, res) => {
             status: 422,
             msg: "You cannot add yourself as a group member",
           });
-          
+
         const notifBody = `OME\n${req.user.profile.firstName} has added you to a group`;
         notify.sendSMS(notifBody, foundUser.phone);
-        notify.sendEmail('Someone added you to a group', notifBody, foundUser.email);
+        notify.sendEmail(
+          "Someone added you to a group",
+          notifBody,
+          foundUser.email
+        );
         members[i].user = foundUser._id;
       } else {
         const smsBody = `OME\n${req.user.profile.firstName} has added you to a group. Please download OME from the link below to signup.`;
@@ -151,7 +161,16 @@ module.exports.add_transaction_post = async (req, res) => {
       transactions,
     });
 
-    let group = await Group.findOne({ _id: groupId }).populate("transactions");
+    let group = await Group.findOne({ _id: groupId })
+      .populate({
+        path: "members transactions",
+        populate: {
+          path: "user",
+          select:
+            "-password -verificationCode -createdAt -updatedAt -salt -verified",
+        },
+      })
+      .exec();
     res.status(200).json({
       status: "success",
       msg: "Transaction Added to Group successfully",

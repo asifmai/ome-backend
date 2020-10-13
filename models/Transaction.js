@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const TransactionSchema = new mongoose.Schema({
   amount: Number,
@@ -14,12 +14,12 @@ const TransactionSchema = new mongoose.Schema({
   transaction_type: String,
   account_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'checkingaccount'
+    ref: "checkingaccount",
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
-  }
+    ref: "User",
+  },
 });
 
-module.exports = mongoose.model('transaction', TransactionSchema);
+module.exports = mongoose.model("transaction", TransactionSchema);
