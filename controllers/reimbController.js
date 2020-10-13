@@ -80,6 +80,12 @@ module.exports.reimbursement_get = async (req, res) => {
     }).populate("transactionId");
 
 
+    for (let i = 0; i < reimbursements.length; i++) {
+      const trId = reimbursements[i].transactionId._id;
+      const foundGroup = await Group.findOne({transactions: trId});
+      reimbursements[i].group = foundGroup ? true : false;
+      reimbursements[i].groupImage = foundGroup ? foundGroup.image : '';
+    }
     
 
 
