@@ -2,8 +2,9 @@ const User = require("../models/user");
 const Reimbursement = require("../models/Reimbursement");
 const Transaction = require("../models/Transaction");
 const CheckingAccount = require("../models/CheckingAccount");
-const notify = require('../helpers/notify');
-const formatter = require('../helpers/formatter');
+const Group = require("../models/group");
+const notify = require("../helpers/notify");
+const formatter = require("../helpers/formatter");
 
 module.exports.addreimb_post = async (req, res) => {
   try {
@@ -11,7 +12,7 @@ module.exports.addreimb_post = async (req, res) => {
     const phone = formatter.formatPhone(req.body.phone);
 
     const transaction = await Transaction.findById(transactionId);
-    
+
     const reimbursedUser = await User.findOne({ phone });
     if (!reimbursedUser) {
       const smsBody = `OME\n${req.user.profile.firstName} has sent you a reimbursement of amount ${amount} against transaction ${transaction.name}. Please download OME from the link below to signup.`;
@@ -19,7 +20,11 @@ module.exports.addreimb_post = async (req, res) => {
     } else {
       const smsBody = `OME\n${req.user.profile.firstName} has sent you a reimbursement of amount ${amount} against transaction ${transaction.name}.`;
       notify.sendSMS(smsBody, phone);
-      notify.sendEmail('Someone sent you a reimbursement', smsBody, reimbursedUser.email)
+      notify.sendEmail(
+        "Someone sent you a reimbursement",
+        smsBody,
+        reimbursedUser.email
+      );
     }
 
     reimbersedUserId = reimbursedUser ? reimbursedUser._id : "";
@@ -77,18 +82,16 @@ module.exports.reimbursement_get = async (req, res) => {
           userId: req.user._id,
         },
       ],
-    }).populate("transactionId");
-
+    })
+      .lean()
+      .populate("transactionId");
 
     for (let i = 0; i < reimbursements.length; i++) {
       const trId = reimbursements[i].transactionId._id;
-      const foundGroup = await Group.findOne({transactions: trId});
-      reimbursements[i].group = foundGroup ? true : false;
-      reimbursements[i].groupImage = foundGroup ? foundGroup.image : '';
+      const foundGroup = await Group.findOne({ transactions: trId });
+      reimbursements[i]["group"] = foundGroup ? true : false;
+      reimbursements[i]["groupImage"] = foundGroup ? foundGroup.image : "";
     }
-    
-
-
 
     res.status(200).json({ status: 200, data: reimbursements });
   } catch (error) {
