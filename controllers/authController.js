@@ -197,7 +197,6 @@ exports.register = async function (req, res, next) {
       const hash = crypto
         .pbkdf2Sync(password, salt, 1000, 64, "sha512")
         .toString("hex");
-      console.log(req.body);
       const newUser = await User.findOneAndUpdate(
         { phone },
         {
@@ -217,6 +216,7 @@ exports.register = async function (req, res, next) {
       const groups = await Group.find();
       for (let i = 0; i < groups.length; i++) {
         let members = groups[i].members;
+        console.log(members);
         if (members.some((mem) => mem.phone == newUser.phone)) {
           console.log("User found in a group");
           members = members.map((mem) => {
@@ -270,6 +270,25 @@ exports.check_email_post = async (req, res) => {
     } else {
       res.status(200).json({ status: 200, available: true });
     }
+  } catch (error) {
+    console.log(`check_email_post error: ${error}`);
+    res.status(500).json({ error });
+  }
+};
+
+exports.invite = async (req, res) => {
+  try {
+    const name = req.body.name ? req.body.name.trim() : "";
+    const phone = req.body.phone ? formatter.formatPhone(req.body.phone) : "";
+    let fromName = req.user.profile
+      ? req.user.profile.firstName
+      : req.user.email;
+
+    const smsBody = `OME\n${fromName} has sent you an invitation. Please download OME from the link below to signup.`;
+
+    notify.sendSMS(smsBody, phone);
+
+    res.status(200).json("Invite Sent");
   } catch (error) {
     console.log(`check_email_post error: ${error}`);
     res.status(500).json({ error });

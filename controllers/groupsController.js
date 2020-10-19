@@ -8,7 +8,15 @@ module.exports.create_group_post = async (req, res) => {
   try {
     const userId = req.user._id;
     const group = req.body;
-    const members = group.members;
+    group.members = group.members.map((item) => {
+      return {
+        ...item,
+        phone: formatter.formatPhone(item.phone),
+      };
+    });
+    let members = group.members;
+
+    console.log(members);
 
     for (let i = 0; i < members.length; i++) {
       members[i].user = null;

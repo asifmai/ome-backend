@@ -21,6 +21,7 @@ router.post("/auth/resend-code", authController.resend_code);
 router.post("/auth/register", authController.register);
 router.post("/auth/check-email", authController.check_email_post);
 router.post("/auth/login", login, authController.login);
+router.post("/auth/send-invite", apiAuth, authController.invite);
 
 // Main Routes
 router.get("/me", apiAuth, meController.me_get);
