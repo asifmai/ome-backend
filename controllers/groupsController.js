@@ -8,12 +8,16 @@ module.exports.create_group_post = async (req, res) => {
   try {
     const userId = req.user._id;
     const group = req.body;
+    group.members = group.members.map(m => {
+      m.phone = formatter.formatPhone(m.phone);
+      return m;
+    });
     const members = group.members;
 
     for (let i = 0; i < members.length; i++) {
       members[i].user = null;
       const foundUser = await User.findOne({
-        phone: formatter.formatPhone(members[i].phone),
+        phone: members[i].phone,
       });
       if (foundUser) {
         if (foundUser.phone == req.user.phone) {
@@ -33,7 +37,7 @@ module.exports.create_group_post = async (req, res) => {
         members[i].user = foundUser._id;
       } else {
         const smsBody = `OME\n${req.user.profile.firstName} has added you to a group. Please download OME from the link below to signup.`;
-        notify.sendSMS(smsBody, formatter.formatPhone(members[i].phone));
+        notify.sendSMS(smsBody, members[i].phone);
       }
     }
 

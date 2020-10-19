@@ -27,19 +27,16 @@ module.exports.addreimb_post = async (req, res) => {
       );
     }
 
-    reimbersedUserId = reimbursedUser ? reimbursedUser._id : "";
     let newReimbursement = new Reimbursement({
       transactionId,
       name,
       phone,
       amount,
-      userId: reimbursedUser,
+      userId: reimbursedUser ? reimbursedUser._id : null,
     });
     await newReimbursement.save();
 
-    newReimbursement = await Reimbursement.findOne({
-      _id: newReimbursement._id,
-    }).populate("transactionId");
+    newReimbursement = await Reimbursement.findById(newReimbursement._id).populate("transactionId");
 
     res.status(200).json({ status: 200, data: newReimbursement });
   } catch (error) {
