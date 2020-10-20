@@ -10,6 +10,7 @@ module.exports.addreimb_post = async (req, res) => {
   try {
     let { transactionId, name, amount } = req.body;
     const phone = formatter.formatPhone(req.body.phone);
+    const groupId = req.body.groupId ? req.body.groupId : null;
 
     const transaction = await Transaction.findById(transactionId);
 
@@ -27,19 +28,19 @@ module.exports.addreimb_post = async (req, res) => {
       );
     }
 
-    reimbersedUserId = reimbursedUser ? reimbursedUser._id : "";
     let newReimbursement = new Reimbursement({
       transactionId,
       name,
       phone,
       amount,
-      userId: reimbursedUser,
+      userId: reimbursedUser ? reimbursedUser._id : null,
+      group: groupId,
     });
     await newReimbursement.save();
 
-    newReimbursement = await Reimbursement.findOne({
-      _id: newReimbursement._id,
-    }).populate("transactionId");
+    newReimbursement = await Reimbursement.findById(
+      newReimbursement._id
+    ).populate("transactionId");
 
     res.status(200).json({ status: 200, data: newReimbursement });
   } catch (error) {
@@ -83,9 +84,9 @@ module.exports.reimbursement_get = async (req, res) => {
         },
       ],
     })
+      .populate("transactionId")
       .lean()
-      .populate("transactionId");
-
+      .exec();
     for (let i = 0; i < reimbursements.length; i++) {
       const trId = reimbursements[i].transactionId._id;
       const foundGroup = await Group.findOne({ transactions: trId });
