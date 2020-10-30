@@ -167,7 +167,8 @@ exports.register = async function (req, res, next) {
       : undefined;
     const lastName = req.body.lastName ? req.body.lastName.trim() : "";
     const password = req.body.password ? req.body.password.trim() : "";
-    const image = req.body.image ? req.body.image.trim() : "";
+    const image = req.body.image ? req.body.image : "";
+    console.log(req.body);
 
     // check for errors
     if (!email) errors.push({ msg: "You must enter an email address." });
@@ -197,7 +198,7 @@ exports.register = async function (req, res, next) {
       const hash = crypto
         .pbkdf2Sync(password, salt, 1000, 64, "sha512")
         .toString("hex");
-      const newUser = await User.findOneAndUpdate(
+      await User.findOneAndUpdate(
         { phone },
         {
           email,
@@ -210,7 +211,7 @@ exports.register = async function (req, res, next) {
           },
         }
       );
-      console.log(newUser);
+      const newUser = await User.findOne({ phone });
 
       // See if the user is already added to a group
       const groups = await Group.find();
